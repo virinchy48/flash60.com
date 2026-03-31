@@ -24,3 +24,9 @@ npm-debug.log*
 node_modules/
 dist/
 .cache/
+
+# Cloudflare / Wrangler
+.wrangler/
+
+# Claude Code (dev tooling, not for deployment)
+.claude/

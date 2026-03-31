@@ -650,20 +650,45 @@
 </footer>
 
 <script>
-  function submitEnquiry(e) {
+  async function submitEnquiry(e) {
     e.preventDefault();
-    const name  = document.getElementById('fname').value;
-    const email = document.getElementById('email').value;
-    const pkg   = document.getElementById('package').value;
-    const msg   = document.getElementById('message').value;
 
-    // Send to hello@flash60.com via mailto fallback
-    const subject = encodeURIComponent(`Flash60 Sponsorship Enquiry — ${pkg}`);
-    const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPackage: ${pkg}\nMessage: ${msg}`);
-    window.location.href = `mailto:hello@flash60.com?subject=${subject}&body=${body}`;
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
 
-    document.getElementById('formContent').style.display = 'none';
-    document.getElementById('successMsg').style.display  = 'block';
+    const data = {
+      access_key: "0208b5c5-5410-4efd-800e-11bb1c931489",
+      subject: `Flash60 Sponsorship Enquiry — ${document.getElementById('package').value}`,
+      from_name: document.getElementById('fname').value + ' ' + document.getElementById('lname').value,
+      email: document.getElementById('email').value,
+      company: document.getElementById('company').value,
+      package: document.getElementById('package').value,
+      budget: document.getElementById('budget').value,
+      message: document.getElementById('message').value,
+      replyto: document.getElementById('email').value,
+    };
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.success) {
+        document.getElementById('formContent').style.display = 'none';
+        document.getElementById('successMsg').style.display  = 'block';
+      } else {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us directly at hello@flash60.com');
+      }
+    } catch {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+      alert('Network error. Please email us directly at hello@flash60.com');
+    }
   }
 </script>
 
