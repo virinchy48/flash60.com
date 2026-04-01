@@ -362,6 +362,83 @@
     .social-card .handle { color: var(--amber); font-size: 14px; font-weight: 600; }
 
 
+    /* ── CONTACT ── */
+    .contact-section {
+      background: linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(245,158,11,0.05) 100%);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 24px;
+      padding: 64px 48px;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .contact-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .contact-section > p {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      padding: 13px 18px;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .2s;
+      resize: vertical;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--amber); }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .contact-form button {
+      background: var(--amber);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 13px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background .2s;
+      width: 100%;
+    }
+    .contact-form button:hover { background: var(--amber-d); }
+    .contact-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .contact-success {
+      display: none;
+      color: var(--green);
+      font-weight: 600;
+      margin-top: 16px;
+    }
+    .contact-note {
+      margin-top: 12px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .contact-note a { color: rgba(255,255,255,0.45); text-decoration: underline; }
+
     /* ── DISCLAIMER ── */
     .disclaimer {
       background: rgba(255,255,255,0.03);
@@ -449,7 +526,7 @@
     <li><a href="#niches">Coverage</a></li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#social">Watch Now</a></li>
-    <li><a href="https://www.youtube.com/@Flash60AU" target="_blank" rel="noopener" class="nav-cta">Watch Now</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
 </nav>
 
@@ -465,8 +542,8 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
       Watch on YouTube
     </a>
-    <a href="mailto:hello@flash60.com" class="btn-secondary">
-      ✉️ Get in Touch
+    <a href="#contact" class="btn-secondary">
+      ✉️ Contact Us
     </a>
   </div>
 </section>
@@ -584,6 +661,25 @@
 </section>
 
 
+<!-- ── CONTACT ── -->
+<section class="section" id="contact">
+  <div class="contact-section">
+    <div class="section-tag">Contact Us</div>
+    <h2>Get in touch</h2>
+    <p>Have a question or want to work with us? Send us a message and we'll get back to you.</p>
+    <div id="contactContent">
+      <form class="contact-form" id="contactForm">
+        <input type="text" id="contactName" placeholder="Your name" required />
+        <input type="email" id="contactEmail" placeholder="your@email.com" required autocomplete="email" />
+        <textarea id="contactMessage" placeholder="Your message" rows="4" required></textarea>
+        <button type="submit" id="contactBtn">Send Message →</button>
+      </form>
+      <p class="contact-note">We'll respond to hello@flash60.com. By submitting you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+    </div>
+    <p class="contact-success" id="contactSuccess">✅ Message sent! We'll be in touch soon.</p>
+  </div>
+</section>
+
 <!-- ── DISCLAIMER ── -->
 <section class="section" style="padding-top: 0;">
   <div class="disclaimer">
@@ -599,6 +695,7 @@
     <a href="https://instagram.com/flash60" target="_blank" rel="noopener">Instagram</a>
     <a href="mailto:hello@flash60.com">hello@flash60.com</a>
     <a href="#niches">Coverage</a>
+    <a href="#contact">Contact</a>
     <a href="privacy.html">Privacy Policy</a>
     <a href="terms.html">Terms of Use</a>
   </div>
@@ -615,6 +712,44 @@
       if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // Contact form — Web3Forms
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contactBtn');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      const payload = {
+        access_key: '0208b5c5-5410-4efd-800e-11bb1c931489',
+        subject: 'New Flash60 Contact Message',
+        from_name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        message: document.getElementById('contactMessage').value
+      };
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('contactContent').style.display = 'none';
+          document.getElementById('contactSuccess').style.display = 'block';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Send Message →';
+          alert('Something went wrong. Please try again or email us at hello@flash60.com');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Send Message →';
+        alert('Something went wrong. Please try again or email us at hello@flash60.com');
+      }
+    });
+  }
 </script>
 
 </body>
