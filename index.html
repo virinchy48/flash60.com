@@ -361,77 +361,6 @@
     .social-card p { color: rgba(255,255,255,0.5); font-size: 13px; }
     .social-card .handle { color: var(--amber); font-size: 14px; font-weight: 600; }
 
-    /* ── NEWSLETTER ── */
-    .newsletter-section {
-      background: linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(245,158,11,0.05) 100%);
-      border: 1px solid rgba(245,158,11,0.2);
-      border-radius: 24px;
-      padding: 64px 48px;
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .newsletter-section h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    .newsletter-section p {
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 32px;
-      line-height: 1.6;
-    }
-    .email-form {
-      display: flex;
-      gap: 12px;
-      max-width: 480px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
-    .email-form input {
-      flex: 1;
-      min-width: 200px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      padding: 13px 18px;
-      border-radius: 10px;
-      outline: none;
-      transition: border-color .2s;
-    }
-    .email-form input:focus { border-color: var(--amber); }
-    .email-form input::placeholder { color: rgba(255,255,255,0.35); }
-    .email-form button {
-      background: var(--amber);
-      color: var(--dark);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 13px 24px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background .2s;
-      white-space: nowrap;
-    }
-    .email-form button:hover { background: var(--amber-d); }
-    .email-form button:disabled { opacity: 0.6; cursor: not-allowed; }
-    .form-success {
-      display: none;
-      color: var(--green);
-      font-weight: 600;
-      margin-top: 16px;
-    }
-    .form-consent {
-      margin-top: 12px;
-      font-size: 11px;
-      color: rgba(255,255,255,0.3);
-      line-height: 1.5;
-    }
-    .form-consent a { color: rgba(255,255,255,0.45); text-decoration: underline; }
 
     /* ── DISCLAIMER ── */
     .disclaimer {
@@ -489,7 +418,6 @@
     @media (max-width: 640px) {
       nav ul { display: none; }
       .hero { padding: 60px 5% 40px; }
-      .newsletter-section { padding: 40px 24px; }
     }
   </style>
 </head>
@@ -521,7 +449,7 @@
     <li><a href="#niches">Coverage</a></li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#social">Watch Now</a></li>
-    <li><a href="#newsletter" class="nav-cta">Get the Brief</a></li>
+    <li><a href="https://www.youtube.com/@Flash60AU" target="_blank" rel="noopener" class="nav-cta">Watch Now</a></li>
   </ul>
 </nav>
 
@@ -537,8 +465,8 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
       Watch on YouTube
     </a>
-    <a href="#newsletter" class="btn-secondary">
-      ✉️ Get the Daily Brief
+    <a href="mailto:hello@flash60.com" class="btn-secondary">
+      ✉️ Get in Touch
     </a>
   </div>
 </section>
@@ -655,20 +583,6 @@
   </div>
 </section>
 
-<!-- ── NEWSLETTER ── -->
-<section class="section" id="newsletter">
-  <div class="newsletter-section">
-    <div class="section-tag">Daily Brief</div>
-    <h2>The 60-second brief,<br />in your inbox</h2>
-    <p>Get key Australian business stories summarised in 60 words or less. Free, weekday mornings.</p>
-    <form class="email-form" id="newsletterForm">
-      <input type="email" id="newsletterEmail" placeholder="your@email.com" required autocomplete="email" />
-      <button type="submit" id="newsletterBtn">Subscribe Free →</button>
-    </form>
-    <p class="form-success" id="formSuccess">🎉 You're in! First brief lands tomorrow morning.</p>
-    <p class="form-consent">By subscribing you agree to receive Flash60's Daily Brief. No spam. Unsubscribe any time. See our <a href="privacy.html">Privacy Policy</a>.</p>
-  </div>
-</section>
 
 <!-- ── DISCLAIMER ── -->
 <section class="section" style="padding-top: 0;">
@@ -685,7 +599,6 @@
     <a href="https://instagram.com/flash60" target="_blank" rel="noopener">Instagram</a>
     <a href="mailto:hello@flash60.com">hello@flash60.com</a>
     <a href="#niches">Coverage</a>
-    <a href="#newsletter">Daily Brief</a>
     <a href="privacy.html">Privacy Policy</a>
     <a href="terms.html">Terms of Use</a>
   </div>
@@ -693,40 +606,6 @@
 </footer>
 
 <script>
-  // Newsletter form — submits via Web3Forms to hello@flash60.com
-  document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('newsletterBtn');
-    const email = document.getElementById('newsletterEmail').value;
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: '0208b5c5-5410-4efd-800e-11bb1c931489',
-          subject: 'Flash60 Newsletter Subscription',
-          from_name: 'Flash60 Website',
-          email: email,
-          replyto: email,
-          message: 'New newsletter subscription: ' + email
-        })
-      });
-      const json = await res.json();
-      if (json.success) {
-        document.getElementById('formSuccess').style.display = 'block';
-        this.style.display = 'none';
-      } else {
-        btn.textContent = 'Try again';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Try again';
-      btn.disabled = false;
-    }
-  });
-
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
